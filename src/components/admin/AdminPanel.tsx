@@ -32,13 +32,13 @@ const AdminCreateForm: FC<AdminCreateFormProps> = ({ onCreate, creating }) => {
       <input
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Question"
+        placeholder="Pregunta"
         className="flex-1 px-3 py-2 border rounded-md bg-white text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
       <input
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
-        placeholder="Answer (optional)"
+        placeholder="Respuesta (opcional)"
         className="flex-1 px-3 py-2 border rounded-md bg-white text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
       <button
@@ -49,7 +49,7 @@ const AdminCreateForm: FC<AdminCreateFormProps> = ({ onCreate, creating }) => {
         <span className="inline-flex items-center">
           <FiPlus className="w-4 h-4" />
         </span>
-        <span>{creating ? "Creating..." : "Create"}</span>
+        <span>{creating ? "Creando..." : "Crear"}</span>
       </button>
     </div>
   );
@@ -105,13 +105,13 @@ const AdminQuestItem: FC<{
             <span className="inline-flex items-center">
               <FiEdit className="w-4 h-4" />
             </span>
-            <span>Save</span>
+            <span>Guardar</span>
           </button>
           <button
             onClick={() => setIsEditing(false)}
             className="inline-flex items-center gap-2 px-2 py-1 bg-white text-sm rounded-md hover:bg-gray-50 border border-gray-100 cursor-pointer"
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </li>
@@ -140,7 +140,7 @@ const AdminQuestItem: FC<{
           <span className="inline-flex items-center">
             <FiEdit className="w-4 h-4 text-amber-700" />
           </span>
-          <span className="text-sm text-amber-700">Edit</span>
+          <span className="text-sm text-amber-700">Editar</span>
         </button>
         <button
           onClick={onDelete}
@@ -150,7 +150,7 @@ const AdminQuestItem: FC<{
           <span className="inline-flex items-center text-red-600">
             <FiTrash2 className="w-4 h-4" />
           </span>
-          <span className="text-sm text-gray-700">Delete</span>
+          <span className="text-sm text-gray-700">Eliminar</span>
         </button>
       </div>
     </li>
@@ -166,7 +166,9 @@ const AdminPanel: FC = () => {
   return (
     <div className="p-4 rounded-lg bg-white border border-gray-100 h-full overflow-auto shadow-sm">
       <div className="mb-4">
-        <strong className="block mb-2 text-gray-700">Create new quest</strong>
+        <strong className="block mb-2 text-gray-700">
+          Crear nueva pregunta
+        </strong>
         <AdminCreateForm
           onCreate={async (q) => {
             await createQuests.mutateAsync(q);
@@ -176,7 +178,9 @@ const AdminPanel: FC = () => {
       </div>
 
       <div>
-        <strong className="block mb-2 text-gray-700">All quests</strong>
+        <strong className="block mb-2 text-gray-700">
+          Todas las preguntas
+        </strong>
         {getQuests.isLoading ? (
           <p className="text-sm text-gray-500">Loading quests...</p>
         ) : getQuests.data?.payload?.length ? (
@@ -196,7 +200,7 @@ const AdminPanel: FC = () => {
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-gray-500">No quests found.</p>
+          <p className="text-sm text-gray-500">No se encontraron preguntas.</p>
         )}
       </div>
     </div>

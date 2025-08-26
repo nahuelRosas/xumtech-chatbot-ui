@@ -13,9 +13,9 @@ function App() {
             <GiChefToque className="w-8 h-8 text-amber-500" />
           </div>
           <div>
-            <h1 className="text-xl font-extrabold">Mastra Kitchen</h1>
+            <h1 className="text-xl font-extrabold">Mastra Cocina</h1>
             <p className="text-sm text-gray-500">
-              Your assistant for recipes and culinary tips
+              Tu asistente para recetas y consejos culinarios
             </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ function App() {
                   d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
                 ></path>
               </svg>
-              <span className="text-sm text-gray-500">Loading</span>
+              <span className="text-sm text-gray-500">Cargando</span>
             </div>
           ) : user ? (
             <div className="flex items-center gap-3">
@@ -59,20 +59,20 @@ function App() {
               <button
                 onClick={() => signOut()}
                 className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 cursor-pointer"
-                title="Sign out"
+                title="Cerrar sesión"
               >
                 <GiExitDoor className="w-4 h-4 text-gray-700" />
-                <span className="text-sm">Sign Out</span>
+                <span className="text-sm">Cerrar sesión</span>
               </button>
             </div>
           ) : (
             <button
               onClick={() => signIn()}
               className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-md shadow hover:bg-amber-600 cursor-pointer"
-              title="Sign in"
+              title="Iniciar sesión"
             >
               <GiDoor className="w-4 h-4 text-white" />
-              <span>Sign In</span>
+              <span>Iniciar sesión</span>
             </button>
           )}
         </div>
@@ -108,8 +108,10 @@ function App() {
                   d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
                 />
               </svg>
-              <span className="text-sm text-gray-500">Loading...</span>
-              <span className="sr-only">Loading content, please wait</span>
+              <span className="text-sm text-gray-500">Cargando...</span>
+              <span className="sr-only">
+                Cargando contenido, por favor espera
+              </span>
             </div>
           </div>
         ) : user ? (
@@ -117,7 +119,7 @@ function App() {
         ) : (
           <div className="p-6 text-center border rounded-xl bg-white border-gray-200">
             <p className="text-gray-500">
-              Sign in to chat with Mastra, your cooking assistant.
+              Inicia sesión para chatear con Mastra, tu asistente de cocina.
             </p>
           </div>
         )}

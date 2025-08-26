@@ -30,11 +30,11 @@ export default function Chat() {
           {activeTab === "chat" && (
             <button
               onClick={clearHistory}
-              aria-label="Clear chat history"
+              aria-label="Borrar historial de chat"
               className="inline-flex items-center gap-2 px-3 py-1 border rounded-md border-gray-200 text-sm hover:bg-gray-50 cursor-pointer"
             >
               <FiTrash2 />
-              <span>Clear</span>
+              <span>Borrar</span>
             </button>
           )}
         </header>
@@ -102,7 +102,7 @@ export const ChatPanel: FC = () => {
     if (error) {
       addMessage({
         role: "system",
-        content: "Sorry, something went wrong. Please try again.",
+        content: "Lo siento, algo salió mal. Por favor intenta de nuevo.",
       });
     }
     if (data || error) {
@@ -125,10 +125,10 @@ export const ChatPanel: FC = () => {
           <div className="flex flex-col items-center justify-center h-full text-center text-orange-500">
             <GiCookingPot className="w-16 h-16 mb-4 text-orange-400" />
             <h2 className="text-lg font-medium text-gray-900">
-              Welcome to Mastra!
+              ¡Bienvenido a Mastra!
             </h2>
             <p className="text-gray-500">
-              Ask for a recipe, tip, or ingredient to get started.
+              Pide una receta, un consejo o un ingrediente para comenzar.
             </p>
           </div>
         ) : (
@@ -155,7 +155,7 @@ export const ChatPanel: FC = () => {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask Mastra anything..."
+            placeholder="Pregunta a Mastra sobre cualquier cosa..."
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -164,13 +164,13 @@ export const ChatPanel: FC = () => {
             }}
             onCompositionStart={() => (composingRef.current = true)}
             onCompositionEnd={() => (composingRef.current = false)}
-            aria-label="Message input"
+            aria-label="Entrada de mensaje"
             className="flex-1 w-full px-4 py-2 text-gray-900 placeholder-gray-500 bg-white/90 transition-all duration-200 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
           <button
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            aria-label="Send message"
+            aria-label="Enviar mensaje"
             className={`p-3 text-white rounded-lg shadow-sm transform disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer ${
               isLoading || !input.trim()
                 ? "bg-gray-400"
