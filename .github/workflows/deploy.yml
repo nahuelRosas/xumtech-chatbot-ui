@@ -3,13 +3,13 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
+      - master
       - main
-      - staging
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - run: npm install && npm run build
