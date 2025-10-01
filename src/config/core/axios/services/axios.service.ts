@@ -5,11 +5,10 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 import axios from "axios";
-import { getToken } from "firebase/app-check";
 import { ApiResponseError } from "../errors/api-response-error";
 import type { IApiResponseError } from "../interface/iapi-response-error";
 import type { IHTTPRequestService } from "../interface/iHTTP-request-service";
-import { auth, appCheckInstance } from "../../../firebase";
+import { auth } from "../../../firebase";
 
 function createErrorHandler() {
   return async function handleAxiosError(
@@ -42,12 +41,6 @@ axiosInstance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const idToken = await auth.currentUser?.getIdToken();
 
-    if (!appCheckInstance) {
-      return Promise.reject(new Error("App Check is not initialized."));
-    }
-    const appCheckToken = await getToken(appCheckInstance);
-
-    config.headers.set("X-Firebase-AppCheck", appCheckToken.token);
     if (idToken) {
       config.headers.set("Authorization", `Bearer ${idToken}`);
     }

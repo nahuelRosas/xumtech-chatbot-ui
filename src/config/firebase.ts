@@ -6,11 +6,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import {
-  initializeAppCheck,
-  ReCaptchaV3Provider,
-  type AppCheck,
-} from "firebase/app-check";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIRE_API_KEY,
@@ -27,29 +22,6 @@ const app: FirebaseApp = getApps().length
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
-function initializeFirebaseAppCheck(appInstance: FirebaseApp): AppCheck | null {
-  if (typeof window === "undefined") return null;
-  try {
-    if (import.meta.env.DEV) {
-      window.FIREBASE_APPCHECK_DEBUG_TOKEN =
-        import.meta.env.VITE_APPCHECK_DEBUG_TOKEN;
-    }
-    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
-    if (!siteKey) {
-      throw new Error("VITE_RECAPTCHA_SITE_KEY is not configured.");
-    }
-    return initializeAppCheck(appInstance, {
-      provider: new ReCaptchaV3Provider(siteKey),
-      isTokenAutoRefreshEnabled: true,
-    });
-  } catch (error) {
-    console.error("Firebase App Check initialization failed.", error);
-    return null;
-  }
-}
-
-export const appCheckInstance = initializeFirebaseAppCheck(app);
 
 const googleProvider = new GoogleAuthProvider();
 
